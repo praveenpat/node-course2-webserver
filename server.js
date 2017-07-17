@@ -1,6 +1,8 @@
 const express = require('express');
 const hbs = require('hbs');
 
+const port = process.env.PORT || 3000;
+
 var app = new express();
 
 app.set('view engine','hbs');
@@ -29,4 +31,7 @@ app.get('/bad',(req,res)=>{
     res.send({errormessage:'unable to fulfill the request'});
 })
 
-app.listen(3000);
+app.listen(port,()=>{
+
+    console.log(`Application started on port ${port}`);
+});
