@@ -8,21 +8,22 @@ var app = new express();
 app.set('view engine','hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
-hbs.registerHelper('pageTitle',()=>{ return 'Page Title';});
+ hbs.registerHelper('pageTitlefn',(title)=>{ return 'hey'+title;});
 hbs.registerHelper('currentYear',()=>new Date().getFullYear());
 
 app.use(express.static(__dirname + '/public'))
 
 app.use((req,res,next)=>{
 
-    res.render('maintenance');
+    //res.render('maintenance');
+    next();
 })
 
 
 app.get('/',(req,res)=>{
 
 
-    res.render('home', {currentYear: new Date().getFullYear()});
+    res.render('home', {pageTitle: "Home Page"});
 
 });
 
